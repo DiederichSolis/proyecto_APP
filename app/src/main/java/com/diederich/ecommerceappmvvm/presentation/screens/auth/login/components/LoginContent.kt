@@ -1,6 +1,7 @@
 package com.diederich.ecommerceappmvvm.presentation.screens.auth.login.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -17,15 +18,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.diederich.ecommerceappmvvm.R
 import com.diederich.ecommerceappmvvm.presentation.components.DefaultButton
 import com.diederich.ecommerceappmvvm.presentation.components.DefaultTextfield
+import com.diederich.ecommerceappmvvm.presentation.navigation.screen.AuthScreen
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback1
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
 
 
 @Composable
-fun LoginContent(paddingValues: PaddingValues) {
+fun LoginContent(navController: NavHostController,paddingValues: PaddingValues) {
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
         .fillMaxSize()) {
@@ -98,7 +102,9 @@ fun LoginContent(paddingValues: PaddingValues) {
                         .padding(top = 1.dp),//separaciones
                         horizontalArrangement = Arrangement.Center) {
                         Text(text = "No tienes cuenta?")
-                        Text(text = " Registrate",
+                        Text(
+                            modifier = Modifier.clickable { navController.navigate(route = AuthScreen.Register.route) },
+                            text = " Regístrate",
                             fontWeight = FontWeight.Bold,
                             color = loginback2
                         )

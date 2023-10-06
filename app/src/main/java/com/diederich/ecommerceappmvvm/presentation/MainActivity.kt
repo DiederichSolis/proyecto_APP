@@ -20,13 +20,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.diederich.ecommerceappmvvm.R
+import com.diederich.ecommerceappmvvm.presentation.navigation.graph.RootNavGraph
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginScreeen
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.EcommerceAppMVVMTheme
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback1
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
 
 class MainActivity : ComponentActivity() {
+
+    private  lateinit var navCotroller: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,7 +43,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoginScreeen()
+                    navCotroller = rememberNavController()
+                    RootNavGraph(navController = navCotroller)
+
                 }
             }
         }

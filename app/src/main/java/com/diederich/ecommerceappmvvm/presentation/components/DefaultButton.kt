@@ -33,6 +33,6 @@ fun DefaultButton(
         colors = ButtonDefaults.buttonColors(backgroundColor = color)
     ) {
         Text(text = text)
-        
+
     }
 }
