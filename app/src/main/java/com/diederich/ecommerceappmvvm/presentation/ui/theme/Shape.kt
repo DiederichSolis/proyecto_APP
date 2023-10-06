@@ -1,4 +1,4 @@
-package com.diederich.ecommerceappmvvm.ui.theme
+package com.diederich.ecommerceappmvvm.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
