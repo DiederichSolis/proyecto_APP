@@ -29,7 +29,10 @@ import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginScree
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.EcommerceAppMVVMTheme
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback1
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private  lateinit var navCotroller: NavHostController

@@ -2,7 +2,9 @@ package com.diederich.ecommerceappmvvm.presentation.screens.auth.register.compon
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -77,7 +79,11 @@ fun RegisterContent(paddingValues: PaddingValues){
                 ),
                 backgroundColor = Color.White.copy(alpha = 0.8f)
             ) {
-                Column(modifier = Modifier.padding(top = 30.dp, start = 30.dp,end=30.dp, bottom = 30.dp)) {
+                Column(modifier = Modifier
+                    .padding(top = 30.dp, start = 30.dp,end=30.dp, bottom = 30.dp)
+                    .verticalScroll(rememberScrollState()))
+                {
+
                     Text(
                         modifier = Modifier.padding(bottom = 20.dp),
                         text = "REGISTRARSE",

@@ -26,7 +26,7 @@ fun DefaultTopBar(
                 fontSize = 19.sp
             )
         },
-        backgroundColor = Color.White,
+        backgroundColor = Color.LightGray,
         navigationIcon = {
             if (upAvailable) {
                 IconButton(onClick = { navController?.popBackStack()  }) { //funcion para regresar a pantalla anterior
