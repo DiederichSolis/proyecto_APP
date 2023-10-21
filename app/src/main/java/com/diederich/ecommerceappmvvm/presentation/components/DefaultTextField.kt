@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
 
@@ -27,11 +29,13 @@ fun DefaultTextfield(
     onValueChange: (value:String) -> Unit,
     label:String,
     icon: ImageVector,
-keyboardType: KeyboardType= KeyboardType.Text
+keyboardType: KeyboardType= KeyboardType.Text,
+    hideText: Boolean=false
+
 ){
-    OutlinedTextField(  modifier = Modifier
+    OutlinedTextField(  modifier = modifier
         .fillMaxWidth(),
-        value = "",
+        value = value,
         onValueChange = { text ->
             onValueChange(text)
                         },
@@ -45,7 +49,8 @@ keyboardType: KeyboardType= KeyboardType.Text
             )
         },
         colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
-       keyboardOptions = KeyboardOptions(keyboardType=keyboardType)
+       keyboardOptions = KeyboardOptions(keyboardType=keyboardType),
+        visualTransformation = if (hideText) PasswordVisualTransformation() else VisualTransformation.None //es pare verificar si desea que se oculte los caracteres
     )
 
 

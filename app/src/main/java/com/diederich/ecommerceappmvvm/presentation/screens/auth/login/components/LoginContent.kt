@@ -1,6 +1,7 @@
 package com.diederich.ecommerceappmvvm.presentation.screens.auth.login.components
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,6 +37,16 @@ import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
 
 @Composable
 fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, vm: LoginViewModel = hiltViewModel()) {
+
+
+    val state = vm.state
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = vm.errorMessage){
+        if (vm.errorMessage !=""){
+           Toast.makeText(context, vm.errorMessage,Toast.LENGTH_LONG).show()
+        }
+    }
 
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
@@ -81,9 +93,9 @@ fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, 
                     )
                     DefaultTextfield(
                         modifier =Modifier.fillMaxWidth(),
-                        value = vm.email,
+                        value = state.email,
                         onValueChange = {
-                                        vm.email = it
+                            vm.onEmailInput(it)
                         },
                         label = "Correo electronico" ,
                         icon = Icons.Default.Email,
@@ -92,13 +104,14 @@ fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, 
 
                     DefaultTextfield(
                         modifier =Modifier.fillMaxWidth(),
-                        value = vm.password ,
+                        value = state.password ,
                         onValueChange = {
-                                        vm.password = it
+                                     vm.onPasswordInput(it)
                         },
                         label = "Contraseña" ,
                         icon = Icons.Default.Lock,
-                        keyboardType = KeyboardType.Password
+                        keyboardType = KeyboardType.Password,
+                        hideText = true
                     )
 
                     DefaultButton(
@@ -106,7 +119,7 @@ fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, 
                             .fillMaxWidth()
                             .padding(top = 10.dp),
                         text = " LISTO",
-                        onClick = {  }
+                        onClick = { vm.validateForm() }
                     )
 
                     Row(modifier = Modifier
