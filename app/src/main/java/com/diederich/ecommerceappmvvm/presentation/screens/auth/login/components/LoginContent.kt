@@ -39,8 +39,11 @@ import com.diederich.ecommerceappmvvm.presentation.ui.theme.loginback2
 fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, vm: LoginViewModel = hiltViewModel()) {
 
 
+
     val state = vm.state
     val context = LocalContext.current
+
+
 
     LaunchedEffect(key1 = vm.errorMessage){
         if (vm.errorMessage !=""){
