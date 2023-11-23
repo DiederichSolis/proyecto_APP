@@ -1,6 +1,7 @@
 package com.diederich.ecommerceappmvvm.di
 
 import com.diederich.ecommerceappmvvm.data.repository.AuthRepositoryImpl
+import com.diederich.ecommerceappmvvm.data.repository.dataSource.AuthLocalDataSource
 import com.diederich.ecommerceappmvvm.data.repository.dataSource.AuthRemoteDataSource
 import com.diederich.ecommerceappmvvm.data.repository.dataSourceImpl.AuthRemoteDataSourceImpl
 import com.diederich.ecommerceappmvvm.data.service.AuthService
@@ -18,5 +19,8 @@ import javax.inject.Singleton
 object RepositoryModule {
 
     @Provides
-    fun provideAuthRepository(authRemoteDataSource: AuthRemoteDataSource): AuthRepository = AuthRepositoryImpl(authRemoteDataSource)
+    fun provideAuthRepository(
+        authRemoteDataSource: AuthRemoteDataSource,
+        authLocalDataSource: AuthLocalDataSource
+    ): AuthRepository = AuthRepositoryImpl(authRemoteDataSource,authLocalDataSource)
 }

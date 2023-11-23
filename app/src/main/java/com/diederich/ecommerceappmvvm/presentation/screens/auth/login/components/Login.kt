@@ -26,6 +26,7 @@ fun Login(navController: NavHostController, vm: LoginViewModel = hiltViewModel()
         }
          is Resource.Success -> { // se coloca ya que son data class y no objetos
             LaunchedEffect(Unit){
+                vm.saveSession(response.data)
                 navController.navigate(route = AuthScreen.Home.route)
             }
         }

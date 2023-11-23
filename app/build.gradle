@@ -74,6 +74,9 @@ dependencies {
     //MOSHI
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
 
+    //Data store
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
