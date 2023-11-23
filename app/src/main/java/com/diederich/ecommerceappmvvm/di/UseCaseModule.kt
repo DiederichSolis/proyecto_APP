@@ -6,6 +6,7 @@ import com.diederich.ecommerceappmvvm.data.service.AuthService
 import com.diederich.ecommerceappmvvm.domain.repository.AuthRepository
 import com.diederich.ecommerceappmvvm.domain.usecase.auth.AuthUseCase
 import com.diederich.ecommerceappmvvm.domain.usecase.auth.LoginUseCase
+import com.diederich.ecommerceappmvvm.domain.usecase.auth.RegisterUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +21,7 @@ object UseCaseModule {
 
     @Provides
     fun provideAuthUseCase(authRepository: AuthRepository) = AuthUseCase(
-        login = LoginUseCase(authRepository)
+        login = LoginUseCase(authRepository),
+        register = RegisterUseCase(authRepository)
     )
 }

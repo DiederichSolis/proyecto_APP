@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.diederich.ecommerceappmvvm.domain.util.Resource
+import com.diederich.ecommerceappmvvm.presentation.components.ProgressBar
 import com.diederich.ecommerceappmvvm.presentation.navigation.screen.AuthScreen
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginViewModel
 
@@ -21,12 +22,7 @@ fun Login(navController: NavHostController, vm: LoginViewModel = hiltViewModel()
 
     when(val response = vm.loginResponse){
         Resource.Loading -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ){
-                CircularProgressIndicator()
-            }
+           ProgressBar()
         }
          is Resource.Success -> { // se coloca ya que son data class y no objetos
             LaunchedEffect(Unit){

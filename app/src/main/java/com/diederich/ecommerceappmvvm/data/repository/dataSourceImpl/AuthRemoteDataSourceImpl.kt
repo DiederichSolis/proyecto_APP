@@ -3,6 +3,7 @@ package com.diederich.ecommerceappmvvm.data.repository.dataSourceImpl
 import android.provider.ContactsContract.CommonDataKinds.Email
 import com.diederich.ecommerceappmvvm.data.repository.dataSource.AuthRemoteDataSource
 import com.diederich.ecommerceappmvvm.data.service.AuthService
+import com.diederich.ecommerceappmvvm.domain.model.AuthResponse
 import com.diederich.ecommerceappmvvm.domain.model.User
 import retrofit2.Response
 
@@ -10,6 +11,8 @@ class AuthRemoteDataSourceImpl(private val authService: AuthService): AuthRemote
 
 
     override suspend fun login(email: String, password: String)= authService.login(email, password)
+    override suspend fun register(user: User): Response<AuthResponse> = authService.register(user)
+
+    }
 
 
-}

@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.diederich.ecommerceappmvvm.presentation.components.DefaultTopBar
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginScreeen
+import com.diederich.ecommerceappmvvm.presentation.screens.auth.register.components.Register
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.register.components.RegisterContent
 import com.diederich.ecommerceappmvvm.presentation.ui.theme.EcommerceAppMVVMTheme
 
@@ -33,6 +34,8 @@ fun RegisterScreen(navController: NavHostController) {
     ) { paddingValues ->
         RegisterContent(paddingValues = paddingValues)
     }
+
+    Register(navController)
 }
 
 @Preview(showBackground = true, showSystemUi = true)
