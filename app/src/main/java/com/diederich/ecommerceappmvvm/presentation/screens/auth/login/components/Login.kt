@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.diederich.ecommerceappmvvm.domain.util.Resoarce
+import com.diederich.ecommerceappmvvm.domain.util.Resource
 import com.diederich.ecommerceappmvvm.presentation.navigation.screen.AuthScreen
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginViewModel
 
@@ -20,7 +20,7 @@ import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginViewM
 fun Login(navController: NavHostController, vm: LoginViewModel = hiltViewModel()){
 
     when(val response = vm.loginResponse){
-        Resoarce.Loading -> {
+        Resource.Loading -> {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -28,13 +28,13 @@ fun Login(navController: NavHostController, vm: LoginViewModel = hiltViewModel()
                 CircularProgressIndicator()
             }
         }
-         is Resoarce.Success -> { // se coloca ya que son data class y no objetos
+         is Resource.Success -> { // se coloca ya que son data class y no objetos
             LaunchedEffect(Unit){
                 navController.navigate(route = AuthScreen.Home.route)
             }
         }
-        is Resoarce.Failure -> {
-            Toast.makeText(LocalContext.current, response.exception?.message  ?: "Erros desconocido", Toast.LENGTH_SHORT).show()
+        is Resource.Failure -> {
+            Toast.makeText(LocalContext.current, response.message , Toast.LENGTH_SHORT).show()
 
         }
         else -> {

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diederich.ecommerceappmvvm.domain.model.AuthResponse
 import com.diederich.ecommerceappmvvm.domain.usecase.auth.AuthUseCase
-import com.diederich.ecommerceappmvvm.domain.util.Resoarce
+import com.diederich.ecommerceappmvvm.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,16 +19,16 @@ class LoginViewModel @Inject constructor(private val  authUseCase: AuthUseCase):
         private set
 
     var errorMessage by mutableStateOf("")
-        private set
 
 
 
 
-    var loginResponse by mutableStateOf<Resoarce<AuthResponse>?>(null)
+
+    var loginResponse by mutableStateOf<Resource<AuthResponse>?>(null)
         private set
     fun login() = viewModelScope.launch {
         if (isValidForm()){
-            loginResponse = Resoarce.Loading //Se espera una respuesta
+            loginResponse = Resource.Loading //Se espera una respuesta
             val result = authUseCase.login(state.email,state.password) //retorna una respuesta
             loginResponse = result // se verifica si es exitosa o marca error
             Log.d("LoginViewModel", "Response: ${loginResponse}")
@@ -53,6 +53,7 @@ class LoginViewModel @Inject constructor(private val  authUseCase: AuthUseCase):
             errorMessage = "La constraseña debe tener al menos 8 caracteres"
             return false
         }
+
         return true
         }
 

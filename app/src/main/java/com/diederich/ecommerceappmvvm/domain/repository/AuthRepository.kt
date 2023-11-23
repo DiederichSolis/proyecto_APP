@@ -1,11 +1,11 @@
 package com.diederich.ecommerceappmvvm.domain.repository
 
 import com.diederich.ecommerceappmvvm.domain.model.AuthResponse
-import com.diederich.ecommerceappmvvm.domain.util.Resoarce
+import com.diederich.ecommerceappmvvm.domain.util.Resource
 
 interface AuthRepository {
 
-    suspend fun login(email: String, password: String): Resoarce<AuthResponse>
+    suspend fun login(email: String, password: String): Resource<AuthResponse>
 
 
 
