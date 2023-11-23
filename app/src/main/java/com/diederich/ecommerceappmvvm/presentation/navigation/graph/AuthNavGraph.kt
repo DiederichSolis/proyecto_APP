@@ -9,6 +9,7 @@ import com.diederich.ecommerceappmvvm.presentation.navigation.Graph
 import com.diederich.ecommerceappmvvm.presentation.navigation.screen.AuthScreen
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.login.LoginScreeen
 import com.diederich.ecommerceappmvvm.presentation.screens.auth.register.RegisterScreen
+import com.diederich.ecommerceappmvvm.presentation.screens.home.HomeScreen
 
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController){
     navigation(
@@ -23,6 +24,10 @@ fun NavGraphBuilder.AuthNavGraph(navController: NavHostController){
 
         composable(route = AuthScreen.Register.route){
             RegisterScreen(navController)
+        }
+
+        composable(route = AuthScreen.Home.route){
+            HomeScreen(navController)
         }
     }
 }

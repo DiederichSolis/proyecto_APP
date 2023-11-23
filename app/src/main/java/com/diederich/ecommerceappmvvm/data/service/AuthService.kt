@@ -1,5 +1,6 @@
 package com.diederich.ecommerceappmvvm.data.service
 
+import com.diederich.ecommerceappmvvm.domain.model.AuthResponse
 import com.diederich.ecommerceappmvvm.domain.model.User
 import retrofit2.Response
 import retrofit2.http.Field
@@ -14,7 +15,7 @@ interface AuthService {
     suspend fun login(
         @Field("email") email:String,
         @Field("password") password:String,
-    ): Response<User>
+    ): Response<AuthResponse>
 
 
 }

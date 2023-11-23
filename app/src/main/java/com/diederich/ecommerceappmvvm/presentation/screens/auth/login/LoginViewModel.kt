@@ -1,16 +1,14 @@
 package com.diederich.ecommerceappmvvm.presentation.screens.auth.login
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.util.Log
 import android.util.Patterns
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diederich.ecommerceappmvvm.domain.model.User
+import com.diederich.ecommerceappmvvm.domain.model.AuthResponse
 import com.diederich.ecommerceappmvvm.domain.usecase.auth.AuthUseCase
-import com.diederich.ecommerceappmvvm.domain.util.Response
+import com.diederich.ecommerceappmvvm.domain.util.Resoarce
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,11 +24,11 @@ class LoginViewModel @Inject constructor(private val  authUseCase: AuthUseCase):
 
 
 
-    var loginResponse by mutableStateOf<Response<User>?>(null)
+    var loginResponse by mutableStateOf<Resoarce<AuthResponse>?>(null)
         private set
     fun login() = viewModelScope.launch {
         if (isValidForm()){
-            loginResponse = Response.Loading //Se espera una respuesta
+            loginResponse = Resoarce.Loading //Se espera una respuesta
             val result = authUseCase.login(state.email,state.password) //retorna una respuesta
             loginResponse = result // se verifica si es exitosa o marca error
             Log.d("LoginViewModel", "Response: ${loginResponse}")
