@@ -1,8 +1,10 @@
 package com.diederich.ecommerceappmvvm.di
 
+import com.diederich.ecommerceappmvvm.data.repository.AuthRepositoryImpl
 import com.diederich.ecommerceappmvvm.data.repository.dataSource.AuthRemoteDataSource
 import com.diederich.ecommerceappmvvm.data.repository.dataSourceImpl.AuthRemoteDataSourceImpl
 import com.diederich.ecommerceappmvvm.data.service.AuthService
+import com.diederich.ecommerceappmvvm.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,8 +15,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 
-object RemoteDataModule {
+object RepositoryModule {
 
     @Provides
-    fun provideAuthRemoteDataSource(authService: AuthService): AuthRemoteDataSource = AuthRemoteDataSourceImpl(authService)
+    fun provideAuthRepository(authRemoteDataSource: AuthRemoteDataSource): AuthRepository = AuthRepositoryImpl(authRemoteDataSource)
 }

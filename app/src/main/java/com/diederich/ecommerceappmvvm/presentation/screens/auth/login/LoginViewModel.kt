@@ -1,17 +1,21 @@
 package com.diederich.ecommerceappmvvm.presentation.screens.auth.login
 
 import android.provider.ContactsContract.CommonDataKinds.Email
+import android.util.Log
 import android.util.Patterns
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.diederich.ecommerceappmvvm.domain.model.User
+import com.diederich.ecommerceappmvvm.domain.usecase.auth.AuthUseCase
+import com.diederich.ecommerceappmvvm.domain.util.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor():ViewModel() {
+class LoginViewModel @Inject constructor(private val  authUseCase: AuthUseCase):ViewModel() {
 
     var state by mutableStateOf(LoginState()) //esta sera una variable privada
         private set
@@ -21,8 +25,18 @@ class LoginViewModel @Inject constructor():ViewModel() {
 
 
 
-    var isValidForm by mutableStateOf(false)
+
+    var loginResponse by mutableStateOf<Response<User>?>(null)
         private set
+    fun login() = viewModelScope.launch {
+        if (isValidForm()){
+            loginResponse = Response.Loading //Se espera una respuesta
+            val result = authUseCase.login(state.email,state.password) //retorna una respuesta
+            loginResponse = result // se verifica si es exitosa o marca error
+            Log.d("LoginViewModel", "Response: ${loginResponse}")
+
+        }
+     }
     fun onEmailInput(email: String){
        state = state.copy(email = email)
     }
@@ -33,16 +47,16 @@ class LoginViewModel @Inject constructor():ViewModel() {
     }
 
 
-    fun validateForm() = viewModelScope.launch {
+    fun isValidForm(): Boolean {
         if (!Patterns.EMAIL_ADDRESS.matcher(state.email).matches()) {
             errorMessage = "El email no es valido"
-        } else if (state.password.length < 8) {
+            return false
+        } else if (state.password.length < 6) {
             errorMessage = "La constraseña debe tener al menos 8 caracteres"
+            return false
         }
-
-        delay(3000)
-        errorMessage = ""//esto es para poder mostrar el otro mensaje es decir vaciarlo para que pueda verificar la siguiente condicion
-    }
+        return true
+        }
 
 }
 

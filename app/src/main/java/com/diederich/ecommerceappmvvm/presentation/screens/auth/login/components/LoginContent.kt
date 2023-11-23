@@ -122,7 +122,7 @@ fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, 
                             .fillMaxWidth()
                             .padding(top = 10.dp),
                         text = " LISTO",
-                        onClick = { vm.validateForm() }
+                        onClick = { vm.login() }
                     )
 
                     Row(modifier = Modifier
