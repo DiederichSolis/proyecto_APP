@@ -56,7 +56,7 @@ fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, 
         .fillMaxSize()) {
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.backimage),
+            painter = painterResource(id = R.drawable.loginback),
             contentDescription = "Background Image",
             contentScale = ContentScale.Crop,
             //   colorFilter = ColorFilter.colorMatrix(

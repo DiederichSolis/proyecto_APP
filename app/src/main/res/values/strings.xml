@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ecommerce App MVVM</string>
+    <string name="name_label">Nombre</string>
 </resources>

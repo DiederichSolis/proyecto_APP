@@ -57,7 +57,7 @@ fun RegisterContent(paddingValues: PaddingValues, vm:RegisterViewModel = hiltVie
     ){
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = R.drawable.registerback ),
+            painter = painterResource(id = R.drawable.registerbackg ),
             contentDescription = "fondo de pantalla de registro",
             contentScale = ContentScale.Crop,
             //  colorFilter = ColorFilter.colorMatrix(
